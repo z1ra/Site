@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Input Form</title>
+  </head>
+  <body>
+    <form>
+      <label>
+        Enter some text:
+        <input type="text" id="input-field" />
+      </label>
+      <br />
+      <button type="button" onclick="showInput()">Submit</button>
+    </form>
+    <br />
+    <div id="output"></div>
+    <script>
+    var messages = JSON.parse(localStorage.getItem("savedMessages")) || [];
+    displayMessages();
+
+      function showInput() {
+        var input = document.getElementById("input-field").value;
+        messages.push(input);
+        localStorage.setItem("savedMessages", JSON.stringify(messages));
+        displayMessages();
+      }
+      function displayMessages() {
+        var output = "";
+        for (var i=0; i< messages.length; i++) {
+          output += messages[i] + "<br>";
+        }
+        document.getElementById("output").innerHTML = output;
+      }
+    </script>
+  </body>
+</html>
